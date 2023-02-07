@@ -36,3 +36,8 @@ def equations():
 @app.route('/scores')
 def posts():
     return 'These are your scores!'
+    
+
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
