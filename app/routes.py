@@ -1,6 +1,8 @@
+import random
 from app import app
 from flask import render_template
-import random
+from app.forms import SignUpForm
+
 
 @app.route('/')
 def index():
@@ -36,8 +38,9 @@ def equations():
 @app.route('/scores')
 def posts():
     return 'These are your scores!'
-    
+
 
 @app.route('/signup')
 def signup():
-    return render_template('signup.html')
+    form = SignUpForm()
+    return render_template('signup.html', form=form)
