@@ -5,10 +5,20 @@
 {% block content %}
 <h1 class="text-center">Sign Up</h1>
 
-<form action="">
-    {{ form.email.label }}
-    {{ form.email }}
+<form action="" class="bg-dark rounded mt-3 p-5">
+    <h1 class="text-center">Sign Up</h1>
+    {{ form.email(class='form-control', placeholder='Enter Email') }}
 
+    {{ form.username.label }}
+    {{ form.username(class='form-control', placeholder='Enter Username') }}
+
+    {{ form.password.label }}
+    {{ form.password(class='form-control', placeholder='Enter Password') }}
+
+    {{ form.confirm_pass.label }}
+    {{ form.confirm_pass(class='form-control', placeholder='Confirm Password') }}
+
+    {{ form.submit(class='btn btn-light w-100 mt-3') }}
 </form>
 
 {% endblock %}
