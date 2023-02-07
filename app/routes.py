@@ -2,6 +2,7 @@ import random
 from app import app
 from flask import render_template, redirect, url_for, flash
 from app.forms import SignUpForm
+from app.models import User
 
 
 @app.route('/')
@@ -45,19 +46,22 @@ def signup():
     form = SignUpForm()
     if form.validate_on_submit():
         print('Form Submitted and Validated!')
-        # Get data from the form
+        
         email = form.email.data
         username = form.username.data
         password = form.password.data
         print(email, username, password)
-        # TODO: Check to see if there is a User with username and/or email
-        if username == 'terryk':
-            flash('That user already exists', 'danger')
+        
+        check_user = User.query.filter( (User.username == username) | (User.email == email) ).all()
+        
+        if check_user:            
+            flash('A user with that email and/or username already exists.', 'danger')
             return redirect(url_for('signup'))
-        # TODO: Create a new User with form data and add to database
+
+        new_user = User(email=email, username=username, password=password)
 
 
-        flash('Thank you for signing up!', 'success')
+        flash(f'Thank you {new_user.username} for signing up!', 'success')
         
         # Redirect back to Home
         return redirect(url_for('index'))
