@@ -1,31 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Math Mash</title>
-</head>
-<body>
-    <div>
-        <h1>Hello from the equations template</h1>
-        <h1>{{ equation }}</h1>>
-        <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-sm">Answer</span>
-            <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-            <button class="btn btn-primary" type="submit">Submit</button>
+{% extends 'base.html' %}
+
+{% block title %} Play {% endblock %}
+    
+{% block content %}
+
+
+        <h1 class="text-center mt-5">Hello from the equations template</h1>
+        <h1 class="text-center mt-5">{{ equation }}</h1>
+        <div class="input-group input-group-sm mt-3">
+            <span class="input-group-text mt-3 mb-3" id="inputGroup-sizing-sm">Answer</span>
+            <input type="text" class="form-control mt-3 mb-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <button class="btn btn-primary mt-3 mb-3" type="submit">Submit</button>
         </div>
-        <div class="card">
-            <div class="card-header">
-              
-            </div>
-            <div class="card-body">
+        <div class="card text-center mt-3 mb-3">
+            <div class="card-body col-md">
               <h5 class="card-title">Score</h5>
-              <p class="card-text">{{ score }}</p>
+              <h1 class="card-text mt-3">{{ score }}</h1>
             </div>
         </div>
-    </div>
+    
 
     
-</body>
-</html>
+{% endblock %}
