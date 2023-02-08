@@ -1,4 +1,5 @@
 import random
+import time
 from app import app
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user
@@ -15,30 +16,21 @@ def index():
 @app.route('/equations')
 def equations():
 
-    def generate_equation():
-        operators = ['+', '-', '*', '/']
-        operator = random.choice(operators)
-        num1 = random.randint(1, 10)
-        num2 = random.randint(1, 10)
-        equation = str(num1) + operator + str(num2)
-        correct_answer = eval(equation)
-        wrong_answers = [correct_answer + random.randint(1, 10),
-                        correct_answer + random.randint(1, 10),
-                        correct_answer + random.randint(1, 10)]
-        return equation, correct_answer, wrong_answers
+    return render_template('equations.html')
 
-    equation, correct_answer, wrong_answers = generate_equation()
-    print("Equation:", equation)
-    print("Correct Answer:", correct_answer)
-    print("Wrong Answers:", wrong_answers)
-
-
-    return render_template('equations.html', equation=equation, correct_answer=correct_answer, wrong_answers=wrong_answers, generate_equation=generate_equation(), score=0)
 
 
 @app.route('/equations/random')
 def equations_random():
 
+    def countdown(t):
+        while t:
+            mins, secs = divmod(t, 60)
+            timer = '{:02d}:{:02d}'.format(mins, secs)
+            print(timer, end="\r")
+            time.sleep(1)
+            t -= 1
+
     def generate_equation():
         operators = ['+', '-', '*', '/']
         operator = random.choice(operators)
@@ -57,7 +49,7 @@ def equations_random():
     print("Wrong Answers:", wrong_answers)
 
 
-    return render_template('random.html', equation=equation, correct_answer=correct_answer, wrong_answers=wrong_answers, generate_equation=generate_equation(), score=0)
+    return render_template('random.html', equation=equation, correct_answer=correct_answer, wrong_answers=wrong_answers, generate_equation=generate_equation(), score=0, countdown=countdown(2))
 
 
 @app.route('/equations/addition')

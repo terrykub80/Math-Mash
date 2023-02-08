@@ -44,3 +44,6 @@ class Score(db.Model):
 
     def __repr__(self):
         return f"<Score {self.points} | {self.date_created}>"
+
+
+
