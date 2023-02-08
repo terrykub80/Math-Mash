@@ -3,7 +3,7 @@ import time
 from app import app
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user
-from app.forms import SignUpForm, LoginForm
+from app.forms import SignUpForm, LoginForm, ProblemForm
 from app.models import User, Score
 
 
@@ -20,16 +20,18 @@ def equations():
 
 
 
-@app.route('/equations/random')
+@app.route('/equations/random', methods=['GET', 'POST'])
 def equations_random():
+    form = ProblemForm()
 
-    def countdown(t):
-        while t:
-            mins, secs = divmod(t, 60)
-            timer = '{:02d}:{:02d}'.format(mins, secs)
-            print(timer, end="\r")
-            time.sleep(1)
-            t -= 1
+    # def countdown(t):
+    #     while t:
+    #         mins, secs = divmod(t, 60)
+    #         timer = '{:02d}:{:02d}'.format(mins, secs)
+    #         print(timer, end="\r")
+    #         time.sleep(1)
+    #         t -= 1
+            
 
     def generate_equation():
         operators = ['+', '-', '*', '/']
@@ -42,14 +44,24 @@ def equations_random():
                         correct_answer + random.randint(1, 10),
                         correct_answer + random.randint(1, 10)]
         return equation, correct_answer, wrong_answers
-
+ 
     equation, correct_answer, wrong_answers = generate_equation()
-    print("Equation:", equation)
-    print("Correct Answer:", correct_answer)
-    print("Wrong Answers:", wrong_answers)
 
 
-    return render_template('random.html', equation=equation, correct_answer=correct_answer, wrong_answers=wrong_answers, generate_equation=generate_equation(), score=0, countdown=countdown(2))
+    def handle_answers():
+        if form.answer == correct_answer:
+            form.score += 1
+            print(correct_answer)
+        else:
+            print(correct_answer)
+        generate_equation()
+        # return form.score
+
+
+    if form.validate_on_submit:
+        handle_answers()
+
+    return render_template('random.html', equation=equation, correct_answer=correct_answer, generate_equation=generate_equation(), handle_answers=handle_answers(), form=form)
 
 
 @app.route('/equations/addition')
