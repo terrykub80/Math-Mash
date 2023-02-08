@@ -3,7 +3,7 @@ from app import app
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_user, logout_user
 from app.forms import SignUpForm, LoginForm
-from app.models import User
+from app.models import User, Score
 
 
 @app.route('/')
@@ -34,6 +34,123 @@ def equations():
 
 
     return render_template('equations.html', equation=equation, correct_answer=correct_answer, wrong_answers=wrong_answers, generate_equation=generate_equation(), score=0)
+
+
+@app.route('/equations/random')
+def equations_random():
+
+    def generate_equation():
+        operators = ['+', '-', '*', '/']
+        operator = random.choice(operators)
+        num1 = random.randint(1, 10)
+        num2 = random.randint(1, 10)
+        equation = str(num1) + operator + str(num2)
+        correct_answer = eval(equation)
+        wrong_answers = [correct_answer + random.randint(1, 10),
+                        correct_answer + random.randint(1, 10),
+                        correct_answer + random.randint(1, 10)]
+        return equation, correct_answer, wrong_answers
+
+    equation, correct_answer, wrong_answers = generate_equation()
+    print("Equation:", equation)
+    print("Correct Answer:", correct_answer)
+    print("Wrong Answers:", wrong_answers)
+
+
+    return render_template('random.html', equation=equation, correct_answer=correct_answer, wrong_answers=wrong_answers, generate_equation=generate_equation(), score=0)
+
+
+@app.route('/equations/addition')
+def equations_addition():
+
+    def generate_addition():
+        operator = '+'
+        num1 = random.randint(1, 10)
+        num2 = random.randint(1, 10)
+        equation = str(num1) + operator + str(num2)
+        correct_answer = eval(equation)
+        wrong_answers = [correct_answer + random.randint(1, 10),
+                        correct_answer + random.randint(1, 10),
+                        correct_answer + random.randint(1, 10)]
+        return equation, correct_answer, wrong_answers
+
+    equation, correct_answer, wrong_answers = generate_addition()
+    print("Equation:", equation)
+    print("Correct Answer:", correct_answer)
+    print("Wrong Answers:", wrong_answers)
+
+
+    return render_template('addition.html', equation=equation, correct_answer=correct_answer, wrong_answers=wrong_answers, generate_addition=generate_addition(), score=0)
+
+
+@app.route('/equations/subtraction')
+def equations_subtraction():
+
+    def generate_subtraction():
+        operator = '-'
+        num1 = random.randint(1, 10)
+        num2 = random.randint(1, 10)
+        equation = str(num1) + operator + str(num2)
+        correct_answer = eval(equation)
+        wrong_answers = [correct_answer + random.randint(1, 10),
+                        correct_answer + random.randint(1, 10),
+                        correct_answer + random.randint(1, 10)]
+        return equation, correct_answer, wrong_answers
+
+    equation, correct_answer, wrong_answers = generate_subtraction()
+    print("Equation:", equation)
+    print("Correct Answer:", correct_answer)
+    print("Wrong Answers:", wrong_answers)
+
+
+    return render_template('subtraction.html', equation=equation, correct_answer=correct_answer, wrong_answers=wrong_answers, generate_subtraction=generate_subtraction(), score=0)
+
+
+@app.route('/equations/multiplication')
+def equations_multiplication():
+
+    def generate_multiplication():
+        operator = '*'
+        num1 = random.randint(1, 10)
+        num2 = random.randint(1, 10)
+        equation = str(num1) + operator + str(num2)
+        correct_answer = eval(equation)
+        wrong_answers = [correct_answer + random.randint(1, 10),
+                        correct_answer + random.randint(1, 10),
+                        correct_answer + random.randint(1, 10)]
+        return equation, correct_answer, wrong_answers
+
+    equation, correct_answer, wrong_answers = generate_multiplication()
+    print("Equation:", equation)
+    print("Correct Answer:", correct_answer)
+    print("Wrong Answers:", wrong_answers)
+
+
+    return render_template('multiplication.html', equation=equation, correct_answer=correct_answer, wrong_answers=wrong_answers, generate_multiplication=generate_multiplication(), score=0)
+
+
+
+@app.route('/equations/division')
+def equations_division():
+
+    def generate_division():
+        operator = '/'
+        num1 = random.randint(1, 10)
+        num2 = random.randint(1, 10)
+        equation = str(num1) + operator + str(num2)
+        correct_answer = eval(equation)
+        wrong_answers = [correct_answer + random.randint(1, 10),
+                        correct_answer + random.randint(1, 10),
+                        correct_answer + random.randint(1, 10)]
+        return equation, correct_answer, wrong_answers
+
+    equation, correct_answer, wrong_answers = generate_division()
+    print("Equation:", equation)
+    print("Correct Answer:", correct_answer)
+    print("Wrong Answers:", wrong_answers)
+
+
+    return render_template('division.html', equation=equation, correct_answer=correct_answer, wrong_answers=wrong_answers, generate_division=generate_division(), score=0)
 
 
 

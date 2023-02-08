@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %} Play {% endblock %}
+
+
+{% block content %}
+
+
+        <h1 class="text-center mt-5">{{ equation }}</h1>
+        <div class="input-group input-group-sm mt-3">
+            <span class="input-group-text mt-3 mb-3" id="inputGroup-sizing-sm">Answer</span>
+            <input type="text" class="form-control mt-3 mb-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <button class="btn btn-primary mt-3 mb-3" type="submit">Submit</button>
+        </div>
+        <div class="card text-center mt-3 mb-3">
+            <div class="card-body col-md">
+              <h5 class="card-title">Score</h5>
+              <h1 class="card-text mt-3">{{ score }}</h1>
+            </div>
+        </div>
+    
+
+
+{% endblock %}
