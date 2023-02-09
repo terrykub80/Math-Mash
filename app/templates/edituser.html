@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit {{ user.username }} {% endblock %}
+
+{% block content %}
+<h1 class="text-center mb-5">Edit Your Info</h1>
+
+<form action="" class="bg-dark rounded p-5" method="post">
+    <!-- <h1 class="text-center">Edit Your Info</h1> -->
+    {{ form.csrf_token }}
+    
+    {{ form.email.label }}
+    {{ form.email(class='form-control', placeholder='Enter Email') }}
+
+    {{ form.username.label }}
+    {{ form.username(class='form-control', placeholder='Enter Username') }}
+
+    {{ form.submit(class='btn btn-light w-100 mt-3') }}
+</form>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, EmailField, IntegerField
+from wtforms import StringField, PasswordField, SubmitField, EmailField, IntegerField, TextAreaField
 from wtforms.validators import EqualTo, InputRequired
 
 
@@ -21,3 +21,9 @@ class ProblemForm(FlaskForm):
     answer = IntegerField('Answer', validators=[InputRequired()])
     submit = SubmitField()
     score = IntegerField('Score', default=0)
+
+
+class EditUserForm(FlaskForm):
+    email = EmailField('Email', validators=[InputRequired()])
+    username = StringField('Username', validators=[InputRequired()])
+    submit = SubmitField()

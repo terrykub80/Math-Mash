@@ -27,6 +27,13 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password_guess)
 
 
+    def update(self, **kwargs):
+        for key, value in kwargs.items():
+            if key in {'email', 'username'}:
+                setattr(self, key, value)
+        db.session.commit()
+
+
 @login.user_loader
 def load_user(user_id):
     return User.query.get(user_id)

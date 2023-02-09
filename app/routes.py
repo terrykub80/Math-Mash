@@ -1,16 +1,43 @@
 import random
 import time
 from app import app
-from flask import render_template, redirect, url_for, flash
-from flask_login import login_user, logout_user
-from app.forms import SignUpForm, LoginForm, ProblemForm
+from flask import render_template, redirect, url_for, flash, request
+from flask_login import login_user, logout_user, login_required
+from app.forms import SignUpForm, LoginForm, ProblemForm, EditUserForm
 from app.models import User, Score
 
 
 @app.route('/')
 def index():
-
     return render_template('index.html')
+
+
+@app.route('/myinfo')
+def my_info():
+    user = User.query.all()
+    if not user:
+        flash(f"A user with id {user.id} does not exist", "danger")
+        return redirect(url_for('index'))
+    return render_template('myinfo.html', user=user)
+
+
+
+@app.route('/myinfo/<user_id>/edituser', methods=["GET", "POST"])
+@login_required
+def edit_user(user_id):
+    user = User.query.get(user_id)
+    form = EditUserForm()
+    if form.validate_on_submit():
+        email = form.email.data
+        username = form.username.data
+        User.update(email=email, username=username)
+        return redirect(url_for('myinfo.html'))
+
+    if request.method == 'GET':
+        form.username.data = user.username
+        form.email.data = user.email
+    
+    return render_template('edituser.html', user=user, form=form)
 
 
 @app.route('/equations')

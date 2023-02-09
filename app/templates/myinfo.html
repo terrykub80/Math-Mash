@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} My Info {% endblock %}
+
+
+{% block content %}
+
+
+    <h1 class="text-center mt-5 mb-5">Your Information</h1>
+    
+    <h5 class="text-center">Username</h5>
+    <h2 class="text-center mb-5"> {{ current_user.username }}</h2>
+
+    <h5 class="text-center mt-5">Email Address</h5>
+    <h2 class="text-center mb-5"> {{ current_user.email }}</h2>
+
+
+    <a href="{{ url_for('edit_user', user_id=current_user.id) }}" class="btn btn-dark mt-5 align-items-center">Edit Info</a>
+
+
+<!-- {% for score in scores %}
+        <div class="card my-3">
+            <div class="card-header">
+            {{ post.title }}
+            </div>
+            <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>{{ post.body }}</p>
+                <footer class="blockquote-footer">{{ post.author.username }}<cite title="Source Title"> {{ post.date_created.strftime('%c') }} </cite></footer>
+            </blockquote>
+            <a href="{{ url_for('get_post', post_id=post.id) }}" class="btn btn-primary mt-3">See More</a>
+            </div>
+        </div>
+{% endfor %} -->
+
+
+
+
+
+
+    
+
+{% endblock %}
