@@ -30,8 +30,8 @@ def edit_user(user_id):
     if form.validate_on_submit():
         email = form.email.data
         username = form.username.data
-        User.update(email=email, username=username)
-        return redirect(url_for('myinfo.html'))
+        User.update(user, email=email, username=username)
+        return redirect(url_for('my_info', user_id=user_id))
 
     if request.method == 'GET':
         form.username.data = user.username
