@@ -7,7 +7,7 @@
 
         <h1 class="text-center mt-5">{{ equation }}</h1>
         <div class="align-items-center">
-            <form action="" class="bg-white rounded mt-3 p-5 align-items-center" method="post">
+            <form action="" class="bg-primary-subtle rounded mt-3 p-5 align-items-center" method="post">
                 
                 {{ form.answer.label(class='text-center') }}
                 {{ form.answer(class='form-control text-center', placeholder='Enter Answer') }}
@@ -16,13 +16,13 @@
             </form>
 
         </div>
-        <div class="card text-center mt-3 mb-3">
+        <div class="card text-center bg-primary-subtle mt-3 mb-3">
             <div class="card-body col-md">
               <h5 class="card-title">Score</h5>
               <h1 class="text-center">{{ form.score(class='text-center') }}</h1>
             </div>
         </div>
-        <div class="card text-center mt-3 mb-3">
+        <div class="card text-center bg-primary-subtle mt-3 mb-3">
             <div class="card-body col-md">
                 <h1>{{ countdown }} </h1>
             </div>

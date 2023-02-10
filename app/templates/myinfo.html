@@ -15,7 +15,7 @@
         <h2 class="text-center mb-5"> {{ current_user.email }}</h2>
 
 
-        <a href="{{ url_for('edit_user', user_id=current_user.id) }}" class="btn btn-dark mt-5 align-items-center">Edit Info</a>
+        <a href="{{ url_for('edit_user', user_id=current_user.id) }}" class="btn btn-dark mt-5 align-center">Edit Info</a>
 
         <button type="button" class="btn btn-secondary mt-5" data-bs-toggle="modal" data-bs-target="#deleteModal">
             Delete Account
@@ -34,11 +34,52 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-secondary">Delete Account</button>
+                    <a href="{{ url_for('delete_user', user_id=current_user.id) }}" class="btn btn-secondary">Delete Account</a>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="row" >
+        <div class="col-sm-3 mt-5 mb-sm-0">
+          <div class="card" style="background-image: url({{ url_for('static', filename='smooth-background.jpg') }})">
+            <div class="card-body" >
+                <h5 class="card-title">Addition</h5>
+                <p class="card-text">{{ current_user.hig}}</p>
+                <a href="/equations/addition" class="btn btn-secondary">Try to beat it!</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 mt-5">
+          <div class="card" style="background-image: url({{ url_for('static', filename='smooth-background.jpg') }})">
+            <div class="card-body">
+                <h5 class="card-title">Subtraction</h5>
+                <p class="card-text">{{ current_user.hig}}</p>
+                <a href="/equations/subtraction" class="btn btn-secondary">Try to beat it!</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 mt-5">
+          <div class="card" style="background-image: url({{ url_for('static', filename='smooth-background.jpg') }})">
+            <div class="card-body">
+                <h5 class="card-title">Multiplication</h5>
+                <p class="card-text">{{ current_user.hig}}</p>
+                <a href="/equations/multiplication" class="btn btn-secondary">Try to beat it!</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3 mt-5">
+          <div class="card" style="background-image: url({{ url_for('static', filename='smooth-background.jpg') }})">
+            <div class="card-body">
+              <h5 class="card-title">Division</h5>
+              <p class="card-text">{{ current_user.hig}}</p>
+              <a href="/equations/division" class="btn btn-secondary">Try to beat it!</a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
 
 
 <!-- {% for score in scores %}

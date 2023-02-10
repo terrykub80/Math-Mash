@@ -40,6 +40,15 @@ def edit_user(user_id):
     return render_template('edituser.html', user=user, form=form)
 
 
+@app.route('/myinfo/<user_id>/deleteuser')
+@login_required
+def delete_user(user_id):
+    user = User.query.get(user_id)
+    user.delete()
+    flash(f"{user.username} has been deleted", "success-subtle")
+    return redirect(url_for('index'))
+
+
 @app.route('/equations')
 def equations():
 
@@ -65,7 +74,7 @@ def equations_random():
         operator = random.choice(operators)
         num1 = random.randint(1, 10)
         num2 = random.randint(1, 10)
-        equation = str(num1) + operator + str(num2)
+        equation = str(num1) + ' ' + operator + ' ' + str(num2)
         correct_answer = eval(equation)
         wrong_answers = [correct_answer + random.randint(1, 10),
                         correct_answer + random.randint(1, 10),
@@ -98,7 +107,7 @@ def equations_addition():
         operator = '+'
         num1 = random.randint(1, 10)
         num2 = random.randint(1, 10)
-        equation = str(num1) + operator + str(num2)
+        equation = str(num1) + ' ' + operator + ' ' + str(num2)
         correct_answer = eval(equation)
         wrong_answers = [correct_answer + random.randint(1, 10),
                         correct_answer + random.randint(1, 10),
@@ -186,7 +195,7 @@ def equations_division():
 
 
 @app.route('/scores')
-def posts():
+def scores():
     return 'These are your scores!'
 
 
@@ -236,7 +245,7 @@ def login():
             flash(f"{user.username} is now logged in", "success")
             return redirect(url_for('index'))
         else:
-            flash("Incorrect username and/or password. Please try again. If you do not have an account please visit the Sign Up page." "danger")
+            flash("Incorrect username and/or password. Please try again. If you do not have an account please visit the Sign Up page.", "danger")
             return redirect(url_for('login'))
 
     return render_template('login.html', form=form)

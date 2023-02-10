@@ -5,11 +5,11 @@
 {% block content %}
 
 {% if current_user.is_authenticated %}
-    <h1 class="text-center">Welcome Back, {{ current_user.username }}!</h1>
-    <h4 class="text-center">Get started whenever you're ready!</h4>
+    <h1 class="text-center mt-5">Welcome Back, {{ current_user.username }}!</h1>
+    <h4 class="text-center mt-5">Get started whenever you're ready!</h4>
 {% else %}
-    <h1 class="text-center">Welcome to Math Mash</h1>
-    <h4 class="text-center">Log in or Sign up to get started</h4>
+    <h1 class="text-center mt-5">Welcome to Math Mash</h1>
+    <h4 class="text-center mt-5">Log in or Sign up to get started</h4>
 {% endif %}
 
     

@@ -6,15 +6,15 @@
 
 
         <div class="row align-items-center mt-5">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" style="background-image: url({{ url_for('static', filename='smooth-background.jpg') }})" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               SELECT YOUR OPERATOR
             </button>
-            <ul class="dropdown-menu text-center">
-              <li><a class="dropdown-item" href="/equations/addition">+  Addition  +</a></li>
-              <li><a class="dropdown-item" href="/equations/subtraction">-  Subtraction  -</a></li>
-              <li><a class="dropdown-item" href="/equations/multiplication">x  Multiplication  x</a></li>
-              <li><a class="dropdown-item" href="/equations/division">/  Division  /</a></li>
-              <li><a class="dropdown-item" href="/equations/random">+-x/  Random  /x-+</a></li>
+            <ul class="dropdown-menu text-center" style="background-image: url({{ url_for('static', filename='smooth-background.jpg') }})">
+              <li><a class="dropdown-item" href="/equations/addition"><strong>+  Addition  +</strong></a></li>
+              <li><a class="dropdown-item" href="/equations/subtraction"><strong>-  Subtraction  -</strong></a></li>
+              <li><a class="dropdown-item" href="/equations/multiplication"><strong>x  Multiplication  x</strong></a></li>
+              <li><a class="dropdown-item" href="/equations/division"><strong>/  Division  /</strong></a></li>
+              <li><a class="dropdown-item" href="/equations/random"><strong>+-x/  Random  /x-+</strong></a></li>
             </ul>
         </div>
         <div class="row align-items-center mt-5">
